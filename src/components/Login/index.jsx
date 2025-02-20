@@ -21,12 +21,10 @@ function Login() {
       setError("Digite um e-mail válido.");
       return;
     }
-
     if (password.length < 8) {
       setError("A senha deve ter pelo menos 8 caracteres.");
       return;
     }
-
     setError("");
     navigate("/reembolso");
   };
@@ -63,9 +61,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && <p className={styles.error}>{error}</p>}
-
           <a href="#">Esqueci minha Senha</a>
-
           <div className={styles.login__btns}>
             <button type="submit">Entrar</button>
             <button>Criar Conta</button>

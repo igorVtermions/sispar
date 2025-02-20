@@ -1,0 +1,42 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.sidebar {
+    width: 88px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 20px;
+
+    button{
+        background-color: $bg-btn-secundary;
+        border: none;
+        padding: 12px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    ul{
+        li{
+            list-style: none;
+            background-color: $bg-btn-secundary;
+            border: none;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer; 
+            margin-bottom: 8px;
+        }
+    }
+
+    &__logout{
+        background-color: $bg-btn-third;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+    }
+  }
