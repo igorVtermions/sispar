@@ -1,0 +1,134 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.ReqRepay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+  &__header {
+    position: absolute;
+    top: 30px;
+    left: 90px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    img {
+      cursor: pointer;
+    }
+
+    p {
+      cursor: pointer;
+    }
+  }
+
+  &__container {
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+  }
+
+  &__formContent {
+    display: flex;
+  }
+  &__formContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      width: calc(33.33% - 10px);
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      width: 110%;
+    }
+
+    input,
+    select {
+      padding: 8px;
+      border: 1px solid #d1d3e2;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    textarea {
+      width: 550px;
+      outline: none;
+      resize: none;
+      border: 1px solid #d1d3e2;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      gap: 8px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      color: $text-color-third;
+      border: none;
+      background-color: $bg-btn;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background-color: $bg-btn-hover;
+    }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed;
+    
+    button{
+      border: none;
+      cursor: pointer;
+    }
+  
+    th,
+    td {
+      padding: 8px;
+      border: 1px solid #d1d3e2;
+      text-align: center;
+      white-space: nowrap; 
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  
+    th {
+      background-color: #e9ecef;
+      font-weight: 600;
+    }
+  
+    td {
+      background-color: #fff;
+      max-width: 150px;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-weight: 600;
+  }
+}

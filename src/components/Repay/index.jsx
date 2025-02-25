@@ -29,7 +29,7 @@ function Repay() {
         </p>
         </div>
         <div className={styles.repay__cardContainer}>
-          <Link className={styles.repay__card}>
+          <Link className={styles.repay__card} to="/solicitacaoreembolso">
             <img src={repay} alt="botão de solicitação de reembolso" />
             <h2>Solicitar Reembolso</h2>
           </Link>
