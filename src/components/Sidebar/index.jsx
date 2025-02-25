@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import close from "../../assets/close.png";
@@ -9,18 +10,20 @@ import history from "../../assets/history.png";
 import logout from "../../assets/logout.png";
 
 function Sidebar() {
+ 
   return (
     <aside className={styles.sidebar}>
-      <button>
+      <button  className={styles.sidebar__toggle}>
         <img src={close} alt="Botão de fechar" />
       </button>
-      <img src={profile} alt="perfil" />
+
+      <img src={profile} alt="perfil" className={styles.sidebar__profile} />
 
       <ul>
-        <li><Link ><img src={home} alt="home" /></Link></li>
-        <li><Link ><img src={repay} alt="repay" /></Link></li>
-        <li><Link ><img src={search} alt="search" /></Link></li>
-        <li><Link ><img src={history} alt="history" /></Link></li>
+        <li><Link to="/reembolso"><img src={home} alt="home" /></Link></li>
+        <li><Link to="/solicitacaoreembolso"><img src={repay} alt="reembolso" /></Link></li>
+        <li><img src={search} alt="search" /></li>
+        <li><img src={history} alt="history" /></li>
       </ul>
 
       <Link to="/" className={styles.sidebar__logout}>
