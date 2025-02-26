@@ -5,6 +5,8 @@ import plus from "../../assets/plus.png";
 import remove from "../../assets/remove.png";
 import dump from "../../assets/dump.png";
 import description from "../../assets/description.png";
+import check from "../../assets/check.png";
+import cancel from "../../assets/cancel.png";
 import styles from "./styles.module.scss";
 
 function ReqRepay() {
@@ -23,6 +25,7 @@ function ReqRepay() {
     distanciaKm: "",
     valorKm: "",
     valorFaturado: "",
+    despesas: "",
   });
 
   const [reembolsos, setReembolsos] = useState([]);
@@ -43,6 +46,14 @@ function ReqRepay() {
     handleClear();
   };
 
+  const calculateTotalBilled = () => {
+    return reembolsos.reduce((total, item) => total + Number(item.valorFaturado || 0), 0).toFixed(2);
+  };
+  
+  const calculateTotalExpenses = () => {
+    return reembolsos.reduce((total, item) => total + Number(item.despesas || 0), 0).toFixed(2);
+  };
+
   const handleClear = () => {
     setFormData({
       nome: "",
@@ -59,6 +70,7 @@ function ReqRepay() {
       distanciaKm: "",
       valorKm: "",
       valorFaturado: "",
+      despesas: "",
     });
   };
 
@@ -140,7 +152,9 @@ function ReqRepay() {
                 <option value="Estacionamento">Estacionamento</option>
                 <option value="Viagem admin.">Viagem admin.</option>
                 <option value="Viagem operacional">Viagem operacional</option>
-                <option value="Eventos de representação">Eventos de representação</option>
+                <option value="Eventos de representação">
+                  Eventos de representação
+                </option>
               </select>
             </div>
             <div>
@@ -151,9 +165,15 @@ function ReqRepay() {
                 onChange={handleChange}
               >
                 <option value="">Selecione...</option>
-                <option value="110109002 - FIN CONTROLES INTERNOS MTZ">110109002 - FIN CONTROLES INTERNOS MTZ</option>
-                <option value="1100110002 - FIN VICE-PRESIDENCIA FINACAS MTZ">1100110002 - FIN VICE-PRESIDENCIA FINACAS MTZ</option>
-                <option value="1100110102 - FIN CONTABILIDADE MTZ">1100110102 - FIN CONTABILIDADE MTZ</option>
+                <option value="110109002 - FIN CONTROLES INTERNOS MTZ">
+                  110109002 - FIN CONTROLES INTERNOS MTZ
+                </option>
+                <option value="1100110002 - FIN VICE-PRESIDENCIA FINACAS MTZ">
+                  1100110002 - FIN VICE-PRESIDENCIA FINACAS MTZ
+                </option>
+                <option value="1100110102 - FIN CONTABILIDADE MTZ">
+                  1100110102 - FIN CONTABILIDADE MTZ
+                </option>
               </select>
             </div>
             <div>
@@ -219,6 +239,15 @@ function ReqRepay() {
                 onChange={handleChange}
               />
             </div>
+            <div>
+              <label>Despesas</label>
+              <input
+                type="number"
+                name="despesas"
+                value={formData.despesas}
+                onChange={handleChange}
+              />
+            </div>
           </div>
         </div>
 
@@ -250,13 +279,17 @@ function ReqRepay() {
                 <th>Distância (Km)</th>
                 <th>Valor/Km</th>
                 <th>Valor Faturado</th>
+                <th>despesas</th>
               </tr>
             </thead>
             <tbody>
               {reembolsos.map((item, index) => (
                 <tr key={index}>
                   <td>
-                    <button onClick={() => handleDelete(index)}> <img src={dump} alt="lixeira" /> </button>
+                    <button onClick={() => handleDelete(index)}>
+                      {" "}
+                      <img src={dump} alt="lixeira" />{" "}
+                    </button>
                   </td>
                   <td>{item.nome}</td>
                   <td>{item.empresa}</td>
@@ -280,6 +313,7 @@ function ReqRepay() {
                   <td>{item.distanciaKm}</td>
                   <td>{item.valorKm}</td>
                   <td>{item.valorFaturado}</td>
+                  <td>{item.despesas}</td>
                 </tr>
               ))}
             </tbody>
@@ -289,13 +323,34 @@ function ReqRepay() {
         {showModal && (
           <div className={styles.ReqRepay__modal}>
             <div className={styles.ReqRepay__modalContent}>
-              <h2>Descrição Completa</h2>
+            <button onClick={() => setShowModal(false)}>X</button>
+              
               <p>{modalDescricao}</p>
-              <button onClick={() => setShowModal(false)}>Fechar</button>
+              
             </div>
           </div>
         )}
       </div>
+      <div className={styles.ReqRepay__actionFooter}>
+  <div className={styles.ReqRepay__info}>
+    <label>Total Faturado</label>
+    <input type="text" name="faturado" value={calculateTotalBilled()} readOnly />
+  </div>
+  <div className={styles.ReqRepay__info}>
+    <label>Total Despesa</label>
+    <input type="text" name="despesa" value={calculateTotalExpenses()} readOnly />
+  </div>
+  <div className={styles.ReqRepay__buttonsAction}>
+    <button>
+      <img src={check} alt="sinal de confirmar" />
+      Enviar para Análise
+    </button>
+    <button className={styles.ReqRepay__cancel}>
+      <img src={cancel} alt="sinal de cancelar" />
+      Cancela Solicitação
+    </button>
+  </div>
+</div>
     </section>
   );
 }
